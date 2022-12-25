@@ -10,14 +10,27 @@ spring:
     database-platform: org.hibernate.dialect.H2Dialect
   application:
     name: departmentservice
-eureka:
-  client:
-#    healthcheck:
-#      enabled: true
-    register-with-eureka: true
-    fetch-registry: true
-    service-url:
-      default-zone: http://locahost:8761/eureka/
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      enabled: true
+    prometheus:
+      enabled: true
+
+### This is now coming from spring cloud via bootstrap yaml
+#eureka:
+#  client:
+#    register-with-eureka: true
+#    fetch-registry: true
+#    service-url:
+#      defaultZone: http://localhost:8762/eureka/
+#  instance:
+#    hostname: localhost
 resilience4j:
   circuitbreaker:
     instances:
